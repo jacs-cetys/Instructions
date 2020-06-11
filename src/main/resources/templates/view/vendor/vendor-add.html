@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendor - Add new</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h4 calss="mb-0">New Vendor</h4>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/vendors/add}"
+                      th:object="${vendor}"
+                      method="post"
+                      class="form-horizontal">
+                    <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" th:field="*{name}" aria-describedby="nameHelp">
+                            <small id="nameHelp" class="form-text text-muted">Enter vendor name</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputSoftware" class="col-sm-2 col-form-label">Software</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputSoftware" th:field="*{software}" aria-describedby="swHelp">
+                            <small id="swHelp" class="form-text text-muted">Enter software name</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPort" class="col-sm-2 col-form-label">Port</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputPort" th:field="*{port}" aria-describedby="portHelp">
+                            <small id="portHelp" class="form-text text-muted">Enter port number</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputServer" class="col-sm-2 col-form-label">Server</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" th:field="*{server}" id="inputServer" aria-describedby="serverHelp" required>
+                                <option th:each="serverItem : ${servers}"
+                                        th:text="${serverItem.getHostname()}"
+                                        th:value="${serverItem.getServerid()}"></option>
+                            </select>
+                            <small id="serverHelp" class="form-text text-muted">Select one of the servers listed</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputStatus" class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="inputStatus" th:field="*{status}" aria-describedby="statusHelp" required>
+                                <option th:value="TRUE" th:text="ACTIVE" selected></option>
+                                <option th:value="FALSE" th:text="DISABLED"></option>
+                            </select>
+                            <small id="statusHelp" class="form-text text-muted">Select vendor status</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Vendor</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
